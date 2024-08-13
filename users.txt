@@ -1,0 +1,4 @@
+Bisan,0000,bisan@gmail.com,beneficiaryUser
+ahmad,0000,ahmad@gmail.com,admin
+ali,0000,ali@gmail.com,storeowner
+sami,0000,sami@gmail.com,rawmaterialsupplier

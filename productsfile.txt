@@ -1,0 +1,8 @@
+| Product Num | Product Name | Price | Product Count |
+|             |              |       |               |
+| 1           | cake         | 2.5   | 150           |
+| 2           | tarte        | 6.0   | 203           |
+| 3           | kunafa       | 10.5  | 96            |
+
+
+
