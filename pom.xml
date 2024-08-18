@@ -3,7 +3,15 @@
   <groupId>sweetmanagementsystem</groupId>
   <artifactId>mysweetmanagementsystem</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+
+
+<properties>
+  <sonar.organization>alnajahcomputer1234512345</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+
+
+	
   
   <dependencies>
 	  
