@@ -87,7 +87,7 @@ public class Message {
 		if(m.getTo()=="") {
 			System.out.println("Please select a reciption");
 			return false;}
-		else
+		
 		return true;
 	}
 
