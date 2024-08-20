@@ -584,7 +584,7 @@ public class myappsweet {
 	            } else {
 	                showGeneralOptions(scanner);
 	            }
-			
+	        }
 
 	        scanner.close();
 	        System.out.println("Thank you for using Sweet System!");
