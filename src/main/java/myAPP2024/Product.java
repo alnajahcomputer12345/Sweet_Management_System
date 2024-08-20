@@ -326,10 +326,10 @@ name_of_product=string;	}
 
 
 	public boolean CheckWeDefineQuantity(Product p) {
-      if(p.getNum_product()==0)
-		return false;
+      if(p.getNum_product()==0) {
+		return false;}
       else
-    	  return true;
+      { return true;}
 	}
 
 
@@ -381,7 +381,7 @@ name_of_product=string;	}
 		return" Processing";		
 	}
         else
-    		return "failed";
+	{return "failed";}
 	}
 
 
