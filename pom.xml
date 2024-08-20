@@ -46,6 +46,8 @@
 <properties>
   <sonar.organization>alnajahcomputer1234512345</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	 <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
+
 </properties>
 
 
