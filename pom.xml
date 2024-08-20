@@ -54,16 +54,12 @@
 	
 
 <properties>
-  <sonar.organization>alnajahcomputer1234512345</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-	 <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
-
-</properties>
-
-<properties>
+    <sonar.organization>alnajahcomputer1234512345</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
 	
