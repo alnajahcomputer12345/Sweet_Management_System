@@ -10,6 +10,8 @@ import myAPP2024.Message;
 import myAPP2024.Type;
 import myAPP2024.User;
 import myAPP2024.myappsweet;
+import org.junit.Test;
+
 public class CommunicationWithOthersSteps {
 
 	
@@ -21,7 +23,7 @@ public class CommunicationWithOthersSteps {
 	public CommunicationWithOthersSteps(myappsweet app) {
         this.app = app;
     }
-	
+	@Test
 	@When("I choose a specific Raw Material Supplier or Store Owner")
 	public void iChooseASpecificRawMaterialSupplierOrStoreOwner() {
 	    // Write code here that turns the phrase above into concrete actions
