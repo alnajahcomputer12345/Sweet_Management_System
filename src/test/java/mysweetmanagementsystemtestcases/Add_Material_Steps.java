@@ -1,6 +1,7 @@
 package mysweetmanagementsystemtestcases;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,7 +28,7 @@ public class Add_Material_Steps {
         this.msg1 = null;
         this.msg2 = null;
     }
-
+@Test
     @Given("we have a Materials table")
     public void we_have_a_materials_table(io.cucumber.datatable.DataTable dataTable) {
       
