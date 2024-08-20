@@ -584,6 +584,10 @@ public class myappsweet {
 	            } else {
 	                showGeneralOptions(scanner);
 	            }
+			System.out.println("Do you want to exit? (yes/no): ");
+    String userInput = scanner.nextLine();
+    if (userInput.equalsIgnoreCase("yes")) {
+        exit = true;
 	        }
 
 	        scanner.close();
