@@ -1,9 +1,6 @@
 package myAPP2024;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -584,6 +581,13 @@ public class myappsweet {
 	            } else {
 	                showGeneralOptions(scanner);
 	            }
+
+System.out.println("Do you want to exit? (yes/no): ");
+    String userInput = scanner.nextLine();
+    if (userInput.equalsIgnoreCase("yes")) {
+        exit = true;
+    }
+			
 	        }
 
 	        scanner.close();
