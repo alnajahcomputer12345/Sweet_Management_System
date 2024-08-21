@@ -10,8 +10,11 @@
     <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
    <maven.compiler.source>20</maven.compiler.source>
     <maven.compiler.target>20</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.coverage.jacoco.xmlReportPaths>../app-it/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.login>${env.SONAR_TOKEN}</sonar.login> <!-- Use environment variable for security -->
+
+    <!-- JaCoCo Properties -->
+    <jacoco.version>0.8.8</jacoco.version>
+    <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
   </properties>
 
