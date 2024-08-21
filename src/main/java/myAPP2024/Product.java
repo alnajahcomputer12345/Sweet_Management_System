@@ -161,7 +161,7 @@ name_of_product=string;	}
 	public static boolean UpdateNameOfProduct(String string, String string2) {
 		
 		boolean existname=false;
-		for (HashMap.Entry<String, Product> entry : myappsweet.products.entrySet()) {
+		for (Entry<String, Product> entry : myappsweet.products.entrySet()) {
         	Product product = entry.getValue();
         	if(product.getName_of_product().equals(string2))
         		existname=true;
