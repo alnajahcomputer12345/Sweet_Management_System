@@ -274,15 +274,15 @@ name_of_product=string;	}
                Product c=new Product(product.getNum_product(),p.getName_of_product(),product.getPrice(),p.getSalesCount());
                Product d=new Product(p.getName_of_product(),p.getSalesCount(),p.getUserNameOfOrderOwner(),product.getPrice());
        		String x=String.valueOf(d.getOrderId());
-             // System.out.println(d.getOrderId());
+            //  System.out.println(d.getOrderId());
             //   System.out.println(d);
    			itemsbuy.put(x, d);
    			p.DecreaseTheNumberOfItems(p.getName_of_product(), p.getSalesCount());
    			boolean paiedmoney=false;
-   		//	System.out.println("Do you want to order more?   (yes/no)");
-   		// Scanner scanner = new Scanner(System.in);
-        // String s = scanner.nextLine();
-         //    if(s.equals("yes"))
+   			System.out.println("Do you want to order more?   (yes/no)");
+   		Scanner scanner = new Scanner(System.in);
+         String s = scanner.nextLine();
+             if(s.equals("yes"))
             	 paiedmoney=true;
              
 			if(p.checkiftheuserBuySth() && !paiedmoney) {
