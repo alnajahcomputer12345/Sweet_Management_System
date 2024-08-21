@@ -24,7 +24,7 @@
     
 
 
-	    
+    
       <!-- JaCoCo Plugin Configuration -->
       <plugin>
         <groupId>org.jacoco</groupId>
