@@ -6,39 +6,33 @@
 
 <build>
     <plugins>
+      <!-- Compiler Plugin -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
+        <version>3.10.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>20</source> <!-- Updated to match JDK 20 -->
+          <target>20</target> <!-- Updated to match JDK 20 -->
         </configuration>
       </plugin>
 
-
-<plugin>
+      <!-- SonarCloud Plugin -->
+      <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
         <version>3.9.1.2184</version>
       </plugin>
-    
 
+      <!-- Surefire Plugin for running tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+      </plugin>
 
-
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-surefire-plugin</artifactId>
-  <version>3.0.0-M5</version>
-</plugin>
-
-
-
-
-
-	    
-
-	    
-   <plugin>
+      <!-- JaCoCo Plugin for code coverage -->
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.8</version>
@@ -61,74 +55,42 @@
     </plugins>
   </build>
 
-
-
-	
-
-<properties>
+  <properties>
     <sonar.organization>alnajahcomputer1234512345</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>20</maven.compiler.source> <!-- Updated to match JDK 20 -->
+    <maven.compiler.target>20</maven.compiler.target> <!-- Updated to match JDK 20 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-	
-  
   <dependencies>
-	  
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-picocontainer</artifactId>
-    <version>7.18.0</version>
-</dependency>
+    <!-- Cucumber Dependencies -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.18.0</version>
+    </dependency>
 
-	  
-	  
-	  
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-java</artifactId>
-    <version>7.18.0</version>
-</dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>7.18.0</version>
+    </dependency>
 
-	  
-	  
-	  
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-core</artifactId>
-    <version>7.18.0</version>
-</dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>7.18.0</version>
+      <scope>test</scope>
+    </dependency>
 
-	  
-	  
-	  
-	  
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.18.0</version>
-    <scope>test</scope>
-</dependency>
-
-	  
-	  
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13.2</version>
-    <scope>test</scope>
-</dependency>
-
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+    <!-- JUnit Dependency -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
-  
 </project>
