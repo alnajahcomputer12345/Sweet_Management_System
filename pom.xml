@@ -4,7 +4,7 @@
   <artifactId>mysweetmanagementsystem</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-<properties>
+ <properties>
     <sonar.organization>alnajahcomputer1234512345</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.projectKey>alnajahcomputer1234512345</sonar.projectKey>
@@ -83,7 +83,15 @@
       </plugin>
       
       
-
+<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M7</version>
+            <configuration>
+                <reportsDirectory>target/surefire-reports</reportsDirectory>
+                <test>**/ACTEST.java</test>
+            </configuration>
+        </plugin>
       
       
     </plugins>
