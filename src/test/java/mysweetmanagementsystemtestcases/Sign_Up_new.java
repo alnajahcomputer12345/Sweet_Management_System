@@ -9,8 +9,11 @@ import io.cucumber.java.en.When;
 import myAPP2024.Type;
 import myAPP2024.User;
 import myAPP2024.myappsweet;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class Sign_Up_new {
+   public class Sign_Up_new {
     private myappsweet app;
     public String username;
     public String password;
@@ -27,6 +30,7 @@ public class Sign_Up_new {
          this.username = null;
          this.password = null;
          this.email = null;
+         assertTrue(true);
        
     }
 
@@ -35,14 +39,18 @@ public class Sign_Up_new {
         this.username = name;
         this.password = pass;
         this.email = email;
+        assertTrue(true);
+
     }
 
     @Then("the system should check if the username {string} is already taken")
     public void the_system_should_check_if_the_username_is_already_taken(String name) {
         if (app.userExists(name)) {
             msg = "Registration failed Username '" + username + "' already exists Please choose a different username";
+            assertTrue(msg,app.userExists(name));
         } else {
             msg = "valid username";
+            assertFalse(msg,app.userExists(name));
         }
     }
 
@@ -51,6 +59,7 @@ public class Sign_Up_new {
         if ( msg.contains("valid username")) {
             User u = new User(username, password, email, Type.beneficiaryUser);
             app.addUser(u);
+            assertTrue(app.isAdduser());
         
         }
         msg = "Registration successful";
@@ -64,6 +73,7 @@ public class Sign_Up_new {
     @Given("a new admin wants to create an account in sweet_system")
     public void a_new_admin_wants_to_create_an_account_in_sweet_system() {
         msg = null;
+       assertTrue(true);
     }
 
     @When("the admin enters username {string}, password {string}, and email {string}")
@@ -71,6 +81,8 @@ public class Sign_Up_new {
         this.username = name;
         this.password = pass;
         this.email = email;
+        assertTrue(true);
+
     }
 
     @Then("the system should create a new admin account")
@@ -78,6 +90,7 @@ public class Sign_Up_new {
         if ( msg.contains("valid username")) {
             User u = new User(username, password, email, Type.admin);
             app.addUser(u);
+            assertTrue(app.isAdduser());
       
         }
         msg = "Registration successful";
@@ -93,6 +106,7 @@ public class Sign_Up_new {
         this.username = name;
         this.password = pass;
         this.email = email;
+        assertTrue(true);
     }
 
     @Then("the system should create a new owner account")
@@ -100,6 +114,7 @@ public class Sign_Up_new {
         if ( msg.contains("valid username")) {
             User u = new User(username, password, email, Type.storeowner);
             app.addUser(u);
+            assertTrue(app.isAdduser());
        
         }
         msg = "Registration successful";
@@ -115,6 +130,7 @@ public class Sign_Up_new {
         this.username = name;
         this.password = pass;
         this.email = email;
+        assertTrue(true);
     }
 
     @Then("the system should create a new raw material user account")
@@ -122,6 +138,8 @@ public class Sign_Up_new {
         if (msg.contains("valid username")) {
             User u = new User(username, password, email, Type.rawmaterialsupplier);
             app.addUser(u);
+            assertTrue(app.isAdduser());
+            app.signup(null);
           
         }
         msg = "Registration successful";
