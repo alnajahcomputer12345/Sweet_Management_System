@@ -58,7 +58,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.8</version>
+        <version>0.8.10</version>
         <executions>
           <execution>
             <id>prepare-agent</id>
@@ -81,6 +81,21 @@
         <artifactId>sonar-maven-plugin</artifactId>
         <version>3.9.1.2184</version>
       </plugin>
+      
+      
+      
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version> <!-- Ensure this version supports Java 20-->
+        <configuration>
+          <source>20</source>
+          <target>20</target>
+        </configuration>
+      </plugin>
+      
+      
       
       
       
