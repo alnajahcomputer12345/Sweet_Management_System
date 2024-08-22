@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import myAPP2024.myappsweet;
+import java.util.Scanner;
 
 public class Log_out_Steps {
 
