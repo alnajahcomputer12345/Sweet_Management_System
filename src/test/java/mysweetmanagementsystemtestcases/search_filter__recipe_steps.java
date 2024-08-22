@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 
 public class search_filter__recipe_steps {
 
+    
     private myappsweet app;
     private String message;
 
