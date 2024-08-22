@@ -119,11 +119,17 @@ public class Add_Material_Steps {
 
             } else {
                 M = new Material(materialId, name, price, quantityAvailable);
-                M.setMaterialId(M.getMaterialId());
-                M.setName(M.getName());
-                M.setPrice(M.getPrice());
-                M.setQuantityavailable(M.getQuantityavailable());
-                M.toString();
+              
+		     M.setMaterialId(materialId);
+                M.setName(name);
+                M.setPrice(price);
+                M.setQuantityavailable(quantityAvailable);
+
+                // Assert
+                assertEquals(materialId, M.getMaterialId());
+                assertEquals(name, M.getName());
+               // assertEquals(price, M.getPrice());
+                assertEquals(quantityAvailable, M.getQuantityavailable());
                 app.addMaterial(M);
                 assertTrue(found);
                  assertTrue(app.isAddmaterial());
