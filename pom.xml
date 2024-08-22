@@ -13,7 +13,7 @@
     <sonar.login>${env.SONAR_TOKEN}</sonar.login> <!-- Use environment variable for security -->
 
     <!-- JaCoCo Properties -->
-    <jacoco.version>0.8.8</jacoco.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
   </properties>
