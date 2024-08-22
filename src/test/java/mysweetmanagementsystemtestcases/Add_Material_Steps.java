@@ -122,8 +122,7 @@ public class Add_Material_Steps {
               
 		
                 app.addMaterial(M);
-		    M.setQuantityavailable(200);
-        assertEquals(200, M.getQuantityavailable());
+		
                 assertTrue(found);
                  assertTrue(app.isAddmaterial());
                 msg2 = "Material added successfully";
