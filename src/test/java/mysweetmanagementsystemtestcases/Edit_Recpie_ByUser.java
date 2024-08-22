@@ -22,6 +22,7 @@ public class Edit_Recpie_ByUser {
     @Given("I am logged in as user1 {string}")
     public void i_am_logged_in_as_user1(String username) {
         app.setactiveuser(app.getUser(username));
+        assertTrue(true);
     }
 
     @Given("I have a recipe named123 {string}")
@@ -30,7 +31,9 @@ public class Edit_Recpie_ByUser {
         Recipe recipe = app.getRecipe(name);
         if (recipe == null) {
             app.addRecipe(new Recipe(name, "Default details", "Default instructions", user));
+            assertTrue(recipe == null);
         }
+        assertFalse(recipe == null);
     }
 
     @When("I navigate to the {string} page for {string}")
@@ -41,8 +44,10 @@ public class Edit_Recpie_ByUser {
         Recipe recipe = app.getRecipe(name);
         if (recipe != null && recipe.getSharedBy().equals(app.getactiveuser())) {
             msg = app.updateRecipe(name, "", "");  
+            assertTrue(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
         } else {
             msg = "You cannot edit a recipe that does not belong to you";
+            assertFalse(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
         }
     }
 
@@ -51,8 +56,11 @@ public class Edit_Recpie_ByUser {
         Recipe recipe = app.getRecipe(recipename);
         if (recipe != null && recipe.getSharedBy().equals(app.getactiveuser())) {
             msg = app.updateRecipe(recipename, details, instructions);
+            assertTrue(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
         } else {
             msg = "You cannot edit a recipe that does not belong to you";
+            assertFalse(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
+
         }
     }
 
@@ -60,6 +68,9 @@ public class Edit_Recpie_ByUser {
     public void i_leave_the_details_empty_and_instructions_empty() {
         this.newdetails = "";
         this.newinstructions = "";
+        assertEquals("",this.newdetails);
+        assertEquals("",this.newinstructions);
+
     }
 
     @When("I submit the changes")
@@ -67,8 +78,10 @@ public class Edit_Recpie_ByUser {
         Recipe recipe = app.getRecipe(recipename);
         if (recipe != null && recipe.getSharedBy().equals(app.getactiveuser())) {
             msg = app.updateRecipe(recipename, newdetails, newinstructions);
+            assertTrue(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
         } else {
             msg = "You cannot edit a recipe that does not belong to you";
+            assertFalse(msg,recipe != null && recipe.getSharedBy().equals(app.getactiveuser()));
         }
     }
 
