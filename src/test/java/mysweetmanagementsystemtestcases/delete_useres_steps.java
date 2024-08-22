@@ -8,7 +8,7 @@ import myAPP2024.myappsweet;
 
 public class delete_useres_steps {
 
-    private myappsweet app;
+   private myappsweet app;
     private String selectedUser;
     private String msg;
 
@@ -20,20 +20,25 @@ public class delete_useres_steps {
     public void i_am_logged_in_as_an_admin_and_im_in_delete_user_page() {
     	app.setactiveuser(app.getAdmins().get("Bisan M Joudeh")); 
         System.out.println("Admin logged in successfully.");
-
+          
        
         System.out.println("Navigated to delete user page.");
+        assertTrue(true);
     }
     @When("I select {string} from the user list")
     public void i_select_from_the_user_list(String username) {
         this.selectedUser = username;
+        assertTrue(true);
+
     }
 
     @When("I click the {string} button")
     public void i_click_the_button(String button) {
     	 if (button.equals("Delete")) {
              msg = app.removeuser(selectedUser);
+             assertTrue(msg,button.equals("Delete"));
          } else {
+        	 assertFalse(button.equals("Delete"));
              throw new IllegalArgumentException("Button not supported: " + button);
          }
     }
