@@ -11,7 +11,11 @@ import java.util.*;
 
 
 public class myappsweet {
-	boolean pricefill=false;
+
+
+
+
+boolean pricefill=false;
 
         public static Map<String, Message> getMessages() {
 		return messages;
@@ -50,18 +54,6 @@ public class myappsweet {
 			System.out.println("You are in the add new product")	;	
 			
 		}
-
-
-public boolean addrecipe=false;
-	    
-	    public boolean isAddrecipe() {
-			return addrecipe;
-		}
-
-		public void setAddrecipe(boolean addrecipe) {
-			this.addrecipe = addrecipe;
-		}
-	
         
 		public boolean checkifexist(String string) {
 			// TODO Auto-generated method stub
@@ -114,8 +106,8 @@ public boolean addrecipe=false;
 		}
 
 		public void printproductnotexist() {
-	System.out.println("This product not exist");		
-		}
+			System.out.println("This product not exist");		
+				}
 
 		public boolean EnterAllRequieredToDelete(Product p) {
 			// TODO Auto-generated method stub
@@ -137,8 +129,8 @@ public boolean addrecipe=false;
 
 
 		
-		public void addnewProduct(Product p) {
-		
+public void addnewProduct(Product p) {
+			
 			String x=String.valueOf(p.getNum_product());
 			boolean b=false;
 	        for (HashMap.Entry<String, Product> entry : products.entrySet()) {
@@ -165,17 +157,17 @@ public boolean addrecipe=false;
 
 		
 
-		public void printDone() {
-			System.out.println("Adding Done");
-			
-		}
+public void printDone() {
+	System.out.println("Adding Done");
+	
+}
 
-		public void viewlistofproducts() {
-			
-				 for (String key : products.keySet()) {
-	 	            System.out.println("Key: " + key + ", Value: " + products.get(key));
-	 	        }
-		}
+public void viewlistofproducts() {
+	
+	 for (String key : products.keySet()) {
+        System.out.println("Key: " + key + ", Value: " + products.get(key));
+    }
+}
 
 		public Map<String, Recipe> getAllRecipe() {
 			return allRecipe;
@@ -216,9 +208,17 @@ public boolean addrecipe=false;
 
 	        isRegistered = !users.isEmpty() || !admins.isEmpty() || !owners.isEmpty() || !rawSuppliers.isEmpty();
 	    }
+public boolean addmaterial=false;
+	       
+	        public boolean isAddmaterial() {
+	return addmaterial;
+}
 
-	        
-	        public void addMaterial(Material m) {
+public void setAddmaterial(boolean addmaterial) {
+	this.addmaterial = addmaterial;
+}
+
+			public void addMaterial(Material m) {
 				boolean existmaterial=false;
 				for (HashMap.Entry<String, Material> entry : allMaterials.entrySet()) {
 		        	Material mm = entry.getValue();
@@ -232,6 +232,7 @@ public boolean addrecipe=false;
 					if(m.getMaterialId()!=0  && m.getName()!="" && m.getPrice()!=0.0 && m.getQuantityavailable()!=0)
 				{String x=String.valueOf(m.getMaterialId());
 				allMaterials.put(x, m);
+				addmaterial=true;
 				System.out.println("Adding new material successfully done");}
 					else
 						System.out.println("Sorry , you miss important details");}
@@ -272,48 +273,48 @@ public boolean addrecipe=false;
 		        return allMaterials.get(MaterialName);
 		    }
 
-	    public void addFeedbackToRecipe(String recipeName, String feedbackContent) {
-	        User user = getactiveuser();
-	       Recipe  recipe = getRecipe(recipeName);
+			public void addFeedbackToRecipe(String recipeName, String feedbackContent) {
+		        User user = getactiveuser();
+		       Recipe  recipe = getRecipe(recipeName);
 
-	        if (user == null) {
-	            System.out.println("You must be logged in to add feedback.");
-	            return;
-	        }
+		        if (user == null) {
+		            System.out.println("You must be logged in to add feedback.");
+		            return;
+		        }
 
-	        if (recipe == null) {
-	            System.out.println("Recipe not found. Feedback cannot be added.");
-	            return;
-	        }
+		        if (recipe == null) {
+		            System.out.println("Recipe not found. Feedback cannot be added.");
+		            return;
+		        }
 
-	        if (feedbackContent == null || feedbackContent.trim().isEmpty()) {
-	            System.out.println("Feedback cannot be empty.");
-	            return;
-	        }
+		        if (feedbackContent == null || feedbackContent.trim().isEmpty()) {
+		            System.out.println("Feedback cannot be empty.");
+		            return;
+		        }
 
-	        Feedback feedback = new Feedback(feedbackContent, user, recipe);
-	        recipe.addFeedback(feedback);
-	        System.out.println("Feedback added successfully.");
-	    }
+		        Feedback feedback = new Feedback(feedbackContent, user, recipe);
+		        recipe.addFeedback(feedback);
+		        System.out.println("Feedback added successfully.");
+		    }
 
 	    
-	    public void filterRecipe(String keyword) {
-	        filteredrecipes.clear(); 
+			public void filterRecipe(String keyword) {
+		        filteredrecipes.clear(); 
 
-	        for (Recipe recipe : allRecipe.values()) {
-	            if (recipe.getDetails() != null && recipe.getDetails().toLowerCase().contains(keyword.toLowerCase())) {
-	                filteredrecipes.add(recipe);
-	            }
-	        }
-	        if(filteredrecipes.isEmpty())
-	        System.out.println("Sorry No Result");
-	        else {
-		        System.out.println("This is the result:");
-		        for (Recipe recipe : filteredrecipes) {
-		            System.out.println(recipe);
-		        }}
-	       
-	    }
+		        for (Recipe recipe : allRecipe.values()) {
+		            if (recipe.getDetails() != null && recipe.getDetails().toLowerCase().contains(keyword.toLowerCase())) {
+		                filteredrecipes.add(recipe);
+		            }
+		        }
+		        if(filteredrecipes.isEmpty())
+		        System.out.println("Sorry No Result");
+		        else {
+			        System.out.println("This is the result:");
+			        for (Recipe recipe : filteredrecipes) {
+			            System.out.println(recipe);
+			        }}
+		       
+		    }
 
 	    public List<Recipe> getFilteredRecipes() {
 	        return new ArrayList<Recipe>(filteredrecipes);
@@ -333,8 +334,17 @@ public boolean addrecipe=false;
 	        User user = getUser(username);
 	        return user != null && user.getEmail().equals(email);
 	    }
+public boolean adduser=false;
 
-	    public void addUser(User user) {
+	    public boolean isAdduser() {
+	return adduser;
+}
+
+public void setAdduser(boolean adduser) {
+	this.adduser = adduser;
+}
+
+		public void addUser(User user) {
 	        switch (user.getKindofuser()) {
 	            case beneficiaryUser:
 	                users.put(user.getUsername(), user);
@@ -349,6 +359,7 @@ public boolean addrecipe=false;
 	                rawSuppliers.put(user.getUsername(), user);
 	                break;
 	        }
+	        adduser=true;
 	    }
 
 	    public User getUser(String username) {
@@ -379,6 +390,7 @@ public boolean addrecipe=false;
 
 	    public Map<String, User> getRawSuppliers() {
 	        return rawSuppliers;
+	        
 	    }
 	    
 	    public User getactiveuser()
@@ -392,8 +404,17 @@ public boolean addrecipe=false;
 	        islogged = activeuser != null;
 	    }
 	    
+	    public boolean addrecipe=false;
 	    
-	    public void addRecipe(Recipe recipe) {
+	    public boolean isAddrecipe() {
+			return addrecipe;
+		}
+
+		public void setAddrecipe(boolean addrecipe) {
+			this.addrecipe = addrecipe;
+		}
+
+		public void addRecipe(Recipe recipe) {
 	        boolean existrecipe=false;
 	        
 	        for (HashMap.Entry<String, Recipe> entry : allRecipe.entrySet()) {
@@ -405,8 +426,7 @@ public boolean addrecipe=false;
 			if ( recipe.getRecipeName() != null && !existrecipe) {
 	            allRecipe.put(recipe.getRecipeName(), recipe);
 	            System.out.println("Recipe added: " + recipe.getRecipeName());
-					            addrecipe=true;
-
+	            addrecipe=true;
 	        } else {
 	            System.out.println("recipe or recipe name cannot be null or it is exist already");
 	        }
@@ -416,6 +436,7 @@ public boolean addrecipe=false;
 	    public Recipe getRecipe(String recipeName) {
 	        return allRecipe.get(recipeName);
 	    }
+	    
 	    
 	    
 	    public Recipe getRecipefromdetails(String details) {
@@ -493,39 +514,39 @@ public boolean addrecipe=false;
 
 
 
- 
+	    public boolean IsThereAproductInStore() {
+			myappsweet a=new myappsweet() ;
+			if(a.getProducts().isEmpty())
+				return false;
+			else
+				return true;
+			
+			
+		}
   
 
 
-	public boolean IsThereAproductInStore() {
-		myappsweet a=new myappsweet() ;
-		if(a.getProducts().isEmpty())
-			return false;
-		else
-			return true;
-		
-		
-	}
+	
 
-	public void GenerateReport() {
-		 for (Sales r : Sales.sales.values()) {
-	            System.out.println(r.getName() +"  "+r.getSale());
-	        }
-		 if(Sales.sales.isEmpty())
-			 System.out.println("There is no sales");
-	}
+	    public void GenerateReport() {
+			 for (Sales r : Sales.sales.values()) {
+		            System.out.println(r.getName() +"  "+r.getSale());
+		        }
+			 if(Sales.sales.isEmpty())
+				 System.out.println("There is no sales");
+		}
   String b;
-	public String BestProduct() {
-		   int x=0;
-		 for (Sales r : Sales.sales.values()) {
-		   if(r.getSale()>x) {
-			   x=r.getSale();
-		       b=r.getName();}
-		 }	
-		 return b;
-	}
+  public String BestProduct() {
+	   int x=0;
+	 for (Sales r : Sales.sales.values()) {
+	   if(r.getSale()>x) {
+		   x=r.getSale();
+	       b=r.getName();}
+	 }	
+	 return b;
+}
 
-	public boolean IsThereAUserInStore() {
+  public boolean IsThereAUserInStore() {
 		// TODO Auto-generated method stub
 		if(users.isEmpty())
 		return false;
@@ -535,22 +556,22 @@ public boolean addrecipe=false;
 
  
  
-	public boolean ViewMessageSetToMe(String string) {
+  public boolean ViewMessageSetToMe(String string) {
 		myappsweet a = new myappsweet();
-        for (Message obj : myappsweet.messages.values()) {
-            // Safely compare strings using Objects.equals
-            if (Objects.equals(obj.getTo(), string)) {
-                System.out.println("There is a message for you");
-                System.out.println(obj.getContent());
-                return true;
-            }
-        }
-        return false;
+      for (Message obj : myappsweet.messages.values()) {
+          // Safely compare strings using Objects.equals
+          if (Objects.equals(obj.getTo(), string)) {
+              System.out.println("There is a message for you");
+              System.out.println(obj.getContent());
+              return true;
+          }
+      }
+      return false;
 	}
 
     
 	
-	public String updateRecipe(String recipeName,String details,String instructions) {
+  public String updateRecipe(String recipeName,String details,String instructions) {
 		Recipe recipe=allRecipe.get(recipeName);
 		if(recipe==null) {
 			return"Recipenotfound";
@@ -569,18 +590,9 @@ public boolean addrecipe=false;
 	}
 	
 	
+ 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	    private void signup(Scanner scanner) {
+	    public void signup(Scanner scanner) {
 	        System.out.println("\nSign Up");
 	        System.out.print("Enter username: ");
 	        String username = scanner.nextLine();
@@ -627,7 +639,7 @@ public boolean addrecipe=false;
 	    }
 
 	   
-	    private void login(Scanner scanner) {
+	    public void login(Scanner scanner) {
 	        System.out.println("\nLog In");
 	        System.out.print("Enter username: ");
 	        String username = scanner.nextLine();
@@ -644,7 +656,7 @@ public boolean addrecipe=false;
 	    }
 
 	   
-	    private void logout(Scanner scanner) {
+	    public void logout(Scanner scanner) {
 	        System.out.println("\nLog Out");
 	        if (!islogged) {
 	            System.out.println("You cannot log out. Please log in first.");
@@ -662,7 +674,7 @@ public boolean addrecipe=false;
 	    }
 
 	  
-	    private String getUserTypeName(Type type) {
+	    public String getUserTypeName(Type type) {
 	        switch (type) {
 	            case beneficiaryUser:
 	                return "user";
@@ -724,6 +736,8 @@ public boolean addrecipe=false;
 	        }
 	    }
 
+
+	
 	 
         
     }
