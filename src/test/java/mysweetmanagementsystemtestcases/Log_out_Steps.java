@@ -1,7 +1,8 @@
 package mysweetmanagementsystemtestcases;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,7 +10,7 @@ import myAPP2024.myappsweet;
 
 public class Log_out_Steps {
 
-    private myappsweet app;
+ private myappsweet app;
     private String msg;
 
     public Log_out_Steps(myappsweet app) {
@@ -25,9 +26,13 @@ public class Log_out_Steps {
     public void the_user_requests_to_log_out() {
         if (!app.islogged) {
             msg = "Logout failed. You are not logged in";
+            assertTrue(msg,!app.islogged);
         } else {
             app.islogged = false;
             msg = "You have successfully logged out of the system";
+            Scanner c=new Scanner("c");
+           app.logout(c);
+            assertFalse(msg,app.islogged);
         }
     }
 
