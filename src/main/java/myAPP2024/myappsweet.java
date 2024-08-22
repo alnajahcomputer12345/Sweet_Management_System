@@ -50,6 +50,18 @@ public class myappsweet {
 			System.out.println("You are in the add new product")	;	
 			
 		}
+
+
+public boolean addrecipe=false;
+	    
+	    public boolean isAddrecipe() {
+			return addrecipe;
+		}
+
+		public void setAddrecipe(boolean addrecipe) {
+			this.addrecipe = addrecipe;
+		}
+	
         
 		public boolean checkifexist(String string) {
 			// TODO Auto-generated method stub
@@ -393,6 +405,8 @@ public class myappsweet {
 			if ( recipe.getRecipeName() != null && !existrecipe) {
 	            allRecipe.put(recipe.getRecipeName(), recipe);
 	            System.out.println("Recipe added: " + recipe.getRecipeName());
+					            addrecipe=true;
+
 	        } else {
 	            System.out.println("recipe or recipe name cannot be null or it is exist already");
 	        }
