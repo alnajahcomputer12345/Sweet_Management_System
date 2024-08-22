@@ -12,7 +12,7 @@ import myAPP2024.myappsweet;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Sign_Up_new {
+
    public class Sign_Up_new {
     private myappsweet app;
     public String username;
