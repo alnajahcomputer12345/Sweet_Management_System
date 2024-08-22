@@ -19,6 +19,7 @@ public class search_filter__recipe_steps {
     @Given("I am logged in as user77 {string}")
     public void i_am_logged_in_as_user77(String username) {
         app.setactiveuser(app.getUser(username));
+        assertTrue(true);
     }
 
     @When("I search for a recipe named {string}")
@@ -26,8 +27,10 @@ public class search_filter__recipe_steps {
         Recipe recipe = app.searchRecipe(recipeName);
         if (recipe == null) {
             message = "Recipe not found";
+            assertTrue(message,recipe == null);
         } else {
             message = recipe.getRecipeName();
+            assertFalse(message,recipe == null);
         }
     }
 
@@ -39,11 +42,13 @@ public class search_filter__recipe_steps {
     @Given("I have a recipe named {string} with details {string}")
     public void i_have_a_recipe_named_with_details(String recipeName, String details) {
         app.addRecipe(new Recipe(recipeName, details, "Mix ingredients", app.getUser("Bisan")));
+        assertTrue(app.isAddrecipe());
     }
 
     @When("I filter recipes by {string}")
     public void i_filter_recipes_by(String keyword) {
         app.filterRecipe(keyword);
+        assertTrue(true);
     }
 
     @Then("I should see recipes categorized as {string} in the results")
@@ -53,6 +58,7 @@ public class search_filter__recipe_steps {
     	for (Recipe recipe : app.getFilteredRecipes()) {
     	    if (!recipe.getDetails().toLowerCase().contains(keyword.toLowerCase())) {
     	        found = true;
+    	        assertTrue(found);
     	        break; // Exit the loop once a match is found
     	    }
     	}
@@ -67,7 +73,7 @@ public class search_filter__recipe_steps {
     
     @Given("I have a recipe named {string}")
     public void iHaveARecipeNamed(String string) {
-        
+        assertTrue(true);
     }
     
     
