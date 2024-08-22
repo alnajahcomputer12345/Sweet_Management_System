@@ -1,7 +1,8 @@
 package mysweetmanagementsystemtestcases;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +37,13 @@ public class Delete_Material_Steps {
     	   User Supplier = app.getRawSuppliers().get("amjad");
     	    if (Supplier != null) {
     	        app.setactiveuser(Supplier);
+    	        assertTrue(Supplier != null);
     	        System.out.println("You are logged in as a Raw Material Supplier.");
     	    } else {
+    	        assertFalse(Supplier != null);
+
     	        throw new RuntimeException("Raw material supplier does not exist.");
+    	        
     	    }
     }
 
@@ -54,6 +59,7 @@ public class Delete_Material_Steps {
     public void this_material_exists_in_the_materials_table(String name) {
         M = app.getMaterial(name);
         found = (M != null);
+        assertFalse(found);
     }
 
     @Then("this material will be removed")
@@ -61,8 +67,10 @@ public class Delete_Material_Steps {
         if (found) {
             app.removeMaterial(name);
             msgc = "Material removed successfully";
+            assertTrue(msgc,found);
         } else {
             msgr = "The material does not exist";
+            assertFalse(msgr,found);
         }
     }
 
@@ -76,6 +84,7 @@ public class Delete_Material_Steps {
     public void this_material_does_not_exist_in_the_store_s_materials_list() {
         if (!found) {
             msgr = "The material does not exist";
+            assertTrue(msgr,!found);
         }
     }
 
@@ -91,6 +100,7 @@ public class Delete_Material_Steps {
         this.materialId = 0; 
         if (this.materialId == 0) {
             msgr = "Material number is required";
+            assertTrue(msgr,this.materialId == 0);
         }
     }
 
@@ -100,7 +110,9 @@ public class Delete_Material_Steps {
         this.name = null; 
         if (this.name == null) {
             msgr = "Material name is required";
+            assertTrue(msgr,this.name == null);
         }
+        //assertFalse(this.name == null);
     }
 
     @Then("I should see an error message1002 {string}")
@@ -108,6 +120,7 @@ public class Delete_Material_Steps {
         msgr = m;
         assertEquals(m, msgr);
     }
+
 
        
 }
