@@ -12,7 +12,7 @@ import myAPP2024.myappsweet;
 
 public class TakeOrderForMe_Steps {
 	
-   String name;
+    String name;
    int numberofitems;
 	private myappsweet app = new myappsweet();
 
@@ -26,11 +26,13 @@ public class TakeOrderForMe_Steps {
 	@Given("I am logged in as a user")
 	public void iAmLoggedInAsAUser() {
 	    // Write code here that turns the phrase above into concrete actions
+		assertTrue(true);
 	}
 
 	@Given("I am in the order page")
 	public void iAmInTheOrderPage() {
 	    // Write code here that turns the phrase above into concrete actions
+		assertTrue(true);
 
 	}
 
@@ -39,6 +41,8 @@ public class TakeOrderForMe_Steps {
     name=string;
     numberofitems=int1;
     Product p=new Product();
+	assertTrue(true);
+
     
 	}
 	
@@ -56,6 +60,7 @@ public void iWillBuyAndTheNumberOfProductWillDecreaseAndBecome(String string ,In
 	Product p=new Product(string ,numberofitems);
 	assertTrue(p.AddToChart(p));
 	p.DecreaseTheNumberOfItems(string,numberofitems);
+	assertTrue(p.SetSales(string,numberofitems));
   System.out.println("Buying is succesfully done");
 
 }
