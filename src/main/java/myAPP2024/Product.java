@@ -281,9 +281,9 @@ name_of_product=string;	}
    			p.DecreaseTheNumberOfItems(p.getName_of_product(), p.getSalesCount());
    			boolean paiedmoney=false;
    			System.out.println("Do you want to order more?   (yes/no)");
-   		Scanner scanner = new Scanner(System.in);
-         String s = scanner.nextLine();
-             if(s.equals("yes"))
+   		//Scanner scanner = new Scanner(System.in);
+      //   String s = scanner.nextLine();
+           //  if(s.equals("yes"))
             	 paiedmoney=true;
              
 			if(p.checkiftheuserBuySth() && !paiedmoney) {
