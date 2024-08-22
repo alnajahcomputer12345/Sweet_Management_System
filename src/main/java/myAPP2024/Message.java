@@ -15,6 +15,8 @@ public class Message {
      Content=string3;
 	}
 
+
+	
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
