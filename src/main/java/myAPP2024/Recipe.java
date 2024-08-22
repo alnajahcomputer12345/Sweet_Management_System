@@ -8,6 +8,10 @@ public class Recipe {
     private String details;
     private String instructions;
     public   List<Feedback> feedbackList = new ArrayList<Feedback>();
+	    public boolean addfeedback=false;
+
+	    public static List <Feedback> viewfeedback=new ArrayList<Feedback>();
+
     private User sharedBy;
     private String category;
 
@@ -25,6 +29,21 @@ public class Recipe {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+
+ public boolean isAddfeedback() {
+		return addfeedback;
+	}
+
+	public void setAddfeedback(boolean addfeedback) {
+		this.addfeedback = addfeedback;
+	}
+
+
+
+
+	
 	public String getRecipeName() {
         return recipeName;
     }
@@ -69,7 +88,13 @@ public class Recipe {
     public void addFeedback(Feedback feedback) {
         if (feedback != null) {
             this.feedbackList.add(feedback);
+		            this.viewfeedback.add(feedback);
+
+		            addfeedback=true;
+
         }
+	    else
+        	addfeedback=false;
     }
 
     public String getCategory() {
