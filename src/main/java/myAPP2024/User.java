@@ -15,9 +15,7 @@ public class User {
     private String password;
     private String email;
     public Type kindofuser;
-    private String city;
-    private static int countnablus;
-    private static int countjenin;
+  
 
 
     public User(String username, String password, String email, Type kindofuser) {
@@ -36,14 +34,7 @@ public class User {
 		this.kindofuser = kindofuser;
 	}
 
-	public User(String username, String password, String email, Type kindofuser, String city) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.kindofuser = kindofuser;
-		this.city = city;
-	}
+	
 
 	
 	
@@ -93,31 +84,9 @@ public class User {
     }
 
 	
-	public static int UsersFromNablus() {
-		 for (User obj : myappsweet.users.values()) 
-			 if(obj.getCity().equals("Nablus"));
-		countnablus++;
-		return countnablus;
-	}
-
-	private String getCity() {
-		// TODO Auto-generated method stub
-		return city;
-	}
 	
-	public void setCity(String city) {
-		this.city = city;
-	}
 
-
-
-	public static int UsersFromJenin() {
-		for (User obj : myappsweet.users.values()) 
-			 if(obj.getCity().equals("Jenin"));
-		countjenin++;
-		return countjenin;
-	}
-
+	
 
   
 }
