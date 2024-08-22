@@ -1,6 +1,7 @@
 package mysweetmanagementsystemtestcases;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +10,7 @@ import myAPP2024.User;
 import myAPP2024.myappsweet;
 
 public class Admin_Update_Profile_Steps {
-   myappsweet app;
+ myappsweet app;
    private String username;
    private String email;
    private String password;
@@ -26,18 +27,21 @@ public class Admin_Update_Profile_Steps {
    public void i_am_logged_in_as_an_admin196() {
        app.setactiveuser(app.getAdmins().get("Bisan M Joudeh")); 
        System.out.println("You are logged in as an admin.");
+       assertTrue(true);
    }
 
    @Given("there is a store owner with username {string} in the system")
    public void there_is_a_store_owner_with_username_in_the_system(String name) {
        u = app.getUser(name);
        found = (u != null);
+       assertTrue(found);
    }
 
    @When("I update the profile for the user with username {string}")
    public void i_update_the_profile_for_the_user_with_username(String string) {
        if (!found) {
            msg2 = "User not found";
+           assertTrue(msg2,!found);
        }
    }
 
@@ -49,6 +53,7 @@ public class Admin_Update_Profile_Steps {
                u.setPassword(newpassword);
                msg1 = "Profile updated successfully";
            }
+           assertTrue(msg1,found);
        }
    }
 
@@ -66,24 +71,30 @@ public class Admin_Update_Profile_Steps {
    public void there_is_a_raw_material_supplier_with_username_in_the_system(String name) {
        u = app.getUser(name);
        found = (u != null);
+       assertTrue(found);
    }
 
    @Given("there is a beneficiary user with username {string} in the system")
    public void there_is_a_beneficiary_user_with_username_in_the_system(String name) {
        u = app.getUser(name);
        found = (u != null);
+       assertTrue(found);
+
    }
 
    @Given("there is no user with username {string} in the system")
    public void there_is_no_user_with_username_in_the_system(String string) {
        u = app.getUser(string);
        found = (u == null);
+       assertTrue(found);
+
    }
 
    @When("I attempt to update the profile for the user with username {string}")
    public void i_attempt_to_update_the_profile_for_the_user_with_username(String string) {
        if (!found) {
            msg2 = "User not found";
+           assertTrue(msg2,!found);
        }
    }
 
@@ -111,6 +122,7 @@ public class Admin_Update_Profile_Steps {
        User anotherUser = app.getUser(name);
        if (anotherUser != null && !anotherUser.equals(u)) {
            msg2 = "Username already exists";
+           assertTrue(msg2,anotherUser != null && !anotherUser.equals(u));
        }
    }
 
@@ -119,9 +131,11 @@ public class Admin_Update_Profile_Steps {
        User anotherUser = app.getUser(newUsername);
        if (anotherUser != null) {
            msg2 = "Username already exists";
+           assertTrue(msg2,anotherUser != null);
        } else if (found) {
            u.setUsername(newUsername);
            msg1 = "Profile updated successfully";
+           assertTrue(msg1,found);
        }
    }
 
