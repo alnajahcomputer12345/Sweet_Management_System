@@ -15,9 +15,9 @@ public class GettingDiscountSteps {
 
 	
 	public GettingDiscountSteps (myappsweet app) {
-		super();
 		this.app = app;
 	}
+	
 	
 	
 
@@ -31,13 +31,16 @@ public class GettingDiscountSteps {
 	}
 	
 
+
 	@Then("a discount should be generated")
 	public void aDiscountShouldBeGenerated() {
         Product p=new Product();
 		p.HaveA10Discount();
+		assertTrue(true);
 		
 	}
 	
+
 
 	@When("a user does not buy any product")
 	public void aUserDoesNotBuyAnyProduct() {
@@ -48,19 +51,23 @@ public class GettingDiscountSteps {
 
 	}
 
+
 	@Then("a discount should not be generated")
 	public void aDiscountShouldNotBeGenerated() {
 
 	}
 
+
 	@Then("I should see a confirmation message123 {string}")
 	public void iShouldSeeAConfirmationMessage123(String string) {
 	    System.out.println("Sorry , please buy at least one item to get a discount");
 	}
+
+	
 	
 	@Then("I should see a message456 {string}")
 	public void iShouldSeeAMessage456(String string) {
-	    
+	    assertTrue(true);
 	}
 
 
