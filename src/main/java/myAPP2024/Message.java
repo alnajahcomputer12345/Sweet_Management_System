@@ -8,7 +8,15 @@ public class Message {
     String to;
     String Content;
 	
+ public static boolean sendmessage=false;
+     
+	public boolean isSendmessage() {
+		return sendmessage;
+	}
 
+	public void setSendmessage(boolean sendmessage) {
+		this.sendmessage = sendmessage;
+	}
 	public Message(String string, String string2, String string3) {
      from=string;
      to=string2;
