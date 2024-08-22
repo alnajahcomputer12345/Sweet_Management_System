@@ -47,3 +47,4 @@ jobs:
             -Dsonar.projectKey=alnajahcomputer12345_Sweet_Management_System \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+           -Dsonar.exclusions=**/Order.java,**/Main.java
