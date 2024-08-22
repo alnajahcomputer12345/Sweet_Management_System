@@ -41,8 +41,10 @@ public class admin_view_steps {
     public void the_admin_requests_to_view_all_users() {
         if (users == null || users.isEmpty()) {
             Message = "No users found";
+            assertTrue(Message,users == null || users.isEmpty());
         } else {
             Message = "Users: " + users.keySet().toString(); 
+            assertFalse(Message,users == null || users.isEmpty());
         }
     }
 
@@ -62,8 +64,10 @@ public class admin_view_steps {
     public void the_admin_requests_to_view_all_recipes() {
         if (recipes == null || recipes.isEmpty()) {
             Message = "No recipes found";
+            assertTrue(Message,recipes == null || recipes.isEmpty());
         } else {
            Message = "Recipes: " + recipes.keySet().toString();
+           assertFalse(Message,recipes == null || recipes.isEmpty());
         }
     }
 
