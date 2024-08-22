@@ -8,15 +8,7 @@ public class Message {
     String to;
     String Content;
 	
- public static boolean sendmessage=false;
-     
-	public boolean isSendmessage() {
-		return sendmessage;
-	}
 
-	public void setSendmessage(boolean sendmessage) {
-		this.sendmessage = sendmessage;
-	}
 	public Message(String string, String string2, String string3) {
      from=string;
      to=string2;
@@ -54,12 +46,22 @@ public class Message {
 	}
 
     private static int currentKey = 0;
+     public static boolean sendmessage=false;
+     
+	public boolean isSendmessage() {
+		return sendmessage;
+	}
+
+	public void setSendmessage(boolean sendmessage) {
+		this.sendmessage = sendmessage;
+	}
 
 	public static void SendMessage(Message m) {
 		
 		if(checkifiselectareciption(m) && checkifienteramessage(m)) {
 			myappsweet.messages.put(String.valueOf(currentKey), m);	
 			currentKey++; 
+			sendmessage=true;
 		      System.out.println("Your message sent");
 		}
 		else
