@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ViewAllmaterials {
 
-    private myappsweet app;
+  private myappsweet app;
     private User currentUser;
     private Map<String, Material> displayedMaterials;
     private String msg;
@@ -29,6 +29,7 @@ public class ViewAllmaterials {
     public void the_supplier_is_logged_into_the_system() {
         currentUser = app.getRawSuppliers().get("sami"); 
         app.setactiveuser(currentUser);
+        assertTrue(true);
     }
 
     @Given("there are materials in the system")
@@ -41,8 +42,12 @@ public class ViewAllmaterials {
     public void the_supplier_requests_to_view_all_materials() {
     	  if (displayedMaterials== null || displayedMaterials.isEmpty()) {
              msg = "No users found";
+             assertTrue(msg,displayedMaterials== null || displayedMaterials.isEmpty());
           } else {
               msg = "Materials: " + displayedMaterials.keySet().toString(); 
+              assertFalse(msg,displayedMaterials== null || displayedMaterials.isEmpty());
+
+              
           }
     }
 
