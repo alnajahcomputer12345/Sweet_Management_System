@@ -282,8 +282,8 @@ name_of_product=string;	}
    			boolean paiedmoney=false;
    			System.out.println("Do you want to order more?   (yes/no)");
    		//Scanner scanner = new Scanner(System.in);
-      //   String s = scanner.nextLine();
-           //  if(s.equals("yes"))
+        // String s = scanner.nextLine();
+         //    if(s.equals("yes"))
             	 paiedmoney=true;
              
 			if(p.checkiftheuserBuySth() && !paiedmoney) {
@@ -312,7 +312,7 @@ name_of_product=string;	}
 
 
 
-	private boolean SetSales(String s,int numberofitems) {
+	public boolean SetSales(String s,int numberofitems) {
 		for (Sales product : Sales.sales.values()) {
 		if (product.getName().equals(s)) { 
 			int x=product.getSale();
@@ -385,6 +385,10 @@ name_of_product=string;	}
 	{return "failed";}
 	}
 
+
+
+	
+	
 
 
 	
