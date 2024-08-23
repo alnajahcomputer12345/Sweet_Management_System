@@ -95,7 +95,7 @@ public class Message {
 
 	public static boolean checkifiselectareciption(Message m) {
 		// TODO Auto-generated method stub
-		if (m.getTo().equals("") && m.getTo()!=null) {
+		if (m.getTo().equals("") || m.getTo()==null) {
             logger.log(Level.WARNING, "Please select a recipient");
 			return false;}
 		else {
