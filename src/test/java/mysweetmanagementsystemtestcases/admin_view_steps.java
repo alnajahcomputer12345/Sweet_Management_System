@@ -14,7 +14,7 @@ import myAPP2024.Recipe;
 import myAPP2024.myappsweet;
 
 public class admin_view_steps {
-    private myappsweet app;
+private myappsweet app;
     private String Message;
     private Map<String, User> users;
     private Map<String, Recipe> recipes;
@@ -28,7 +28,7 @@ public class admin_view_steps {
         
         app.setactiveuser(app.getAdmins().get("Ruba")); 
         assertNotNull(app.getactiveuser());
-        assertEquals(Type.admin, app.getactiveuser().getKindofuser());
+        assertEquals(Type.ADMIN, app.getactiveuser().getKindofuser());
     }
 
     @Given("there are users in the system")
@@ -82,6 +82,7 @@ public class admin_view_steps {
     public void the_system_should_display_a_message(String expected) {
         assertEquals(expected, Message);
     }
+
 
    
 }
