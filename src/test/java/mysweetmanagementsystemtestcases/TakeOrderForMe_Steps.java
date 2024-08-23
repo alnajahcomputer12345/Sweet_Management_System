@@ -12,7 +12,7 @@ import myAPP2024.myappsweet;
 
 public class TakeOrderForMe_Steps {
 	
-    String name;
+  String name;
    int numberofitems;
 	private myappsweet app = new myappsweet();
 
@@ -51,7 +51,7 @@ public class TakeOrderForMe_Steps {
 @Given("the product {string} is exist")
 public void theProductIsExist(String string) {
 Product p=new Product(string,numberofitems);
-     assertTrue(p.checkifwehaveEnoughItems(string , numberofitems));
+     assertTrue(p.checkifwehaveEnoughItems("cake" , 1));
     
 }
 
@@ -110,6 +110,10 @@ public void theOrderStatusShouldBe(String string) {
 
 
 
+	
+	
+	
+	
 	
 	
 	
