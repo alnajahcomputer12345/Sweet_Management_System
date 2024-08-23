@@ -15,12 +15,7 @@ import org.junit.Test;
 public class CommunicationWithOthersSteps {
 
 	
-	
-	
-
-  
-
-    private myappsweet app;
+	private myappsweet app;
 
 	public CommunicationWithOthersSteps(myappsweet app) {
         this.app = app;
@@ -42,6 +37,9 @@ public class CommunicationWithOthersSteps {
 	@When("I send the message")
 	public void iSendTheMessage() {
 		Message m=new Message();
+		m.setContent("mmm");
+		m.setFrom("uuu");
+		m.setTo("bb");
 		Message.SendMessage(m);
 		m.setFrom(m.getFrom());
 		m.setContent(m.getContent());
@@ -87,6 +85,7 @@ public class CommunicationWithOthersSteps {
 
 
 
+	
 	
 	
 	
