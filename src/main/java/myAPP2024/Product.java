@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 public class Product {
 
+	
 	int num_product;
 	String nameOfProduct;
 	double price;
