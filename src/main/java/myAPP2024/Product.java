@@ -2,6 +2,8 @@ package myAPP2024;
 import java.lang.*;
 import java.util.Scanner;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,13 +11,14 @@ import java.util.Map;
 public class Product {
 
 	int num_product;
-	String name_of_product;
+	String nameOfProduct;
 	double price;
 	int count;
 	int SalesCount;
 	String UserNameOfOrderOwner;
 	private int OrderId;
 	private static int currentOrderId = 0; // Static counter for unique order IDs
+	private static final Logger logger = Logger.getLogger(Product.class.getName());
 
 	double totalprice;
 	 //public static ArrayList<Product> list = new ArrayList<Product>();
@@ -24,7 +27,7 @@ public class Product {
 
    public Product(int num_product2,String name ,double price2 , int count1) {
    num_product=num_product2;
-   name_of_product=name;
+	 nameOfProduct=name;
    price=price2;
    count=count1;
 
@@ -50,12 +53,12 @@ public void setOrderId(int orderId) {
 
 
 	public Product(String name, int num) {
-  name_of_product=name;
+		String nameOfProduct=name;
   this.SalesCount=num;
 	}
 
 	public Product(String name, int num ,String own,double price) {
-		  name_of_product=name;
+		nameOfProduct=name;
 		  this.SalesCount=num;
 		  this.UserNameOfOrderOwner=own;
 		  this.price=price;
@@ -65,12 +68,12 @@ public void setOrderId(int orderId) {
 
 	public Product(int i, String string) {
 		num_product=i;
-		name_of_product=string;
+		nameOfProduct=string;
 	}
 
 	public Product(String s1,int i, String string) {
 		this.SalesCount=i;
-		name_of_product=s1;
+		nameOfProduct=s1;
 		this.UserNameOfOrderOwner=string;
 		
 	}
@@ -90,33 +93,34 @@ public void setOrderId(int orderId) {
 
 
 	public Product(String string) {
-name_of_product=string;	}
+		nameOfProduct=string;	}
 
 
 
 	public Product(Product p, double n) {
-      this.name_of_product=p.getName_of_product();
-      this.num_product=p.getNum_product();
+      this.nameOfProduct=p.getNameOfProduct();
+      this.num_product=p.getNumProduct();
       
 	}
 
 
 
-	public int getNum_product() {
+	public int  getNumProduct() {
 		return num_product;
 	}
 	
-	public void setNum_product(int num_product) {
+	public void setNumProduct(int num_product) {
 		this.num_product = num_product;
 	}
 	
-	public String getName_of_product() {
-		return name_of_product;
+	public String getNameOfProduct() {
+		return nameOfProduct;
 	}
 	
-	public void setName_of_product(String name_of_product) {
-		this.name_of_product = name_of_product;
+	public void setName_of_product(String nameOfProduct) {
+		this.nameOfProduct = nameOfProduct;
 	}
+
 	
 	public double getPrice() {
 		return price;
@@ -129,15 +133,15 @@ name_of_product=string;	}
 
 
 	public static boolean CheckIfExistToUpdate(String string) {
-	//	myappsweet ap=new myappsweet();
-      // listofproduct=ap.getProducts();
-       for (Product obj : myappsweet.getProducts().values()) 
-    	   if (obj.getName_of_product().equals(string)) {
-               System.out.println("This product exists");
-               return true;
-           }
-
-		return false;
+	    for (Product obj : myappsweet.getProducts().values()) {
+	        if (obj != null && obj.getNameOfProduct() != null) {
+	            if (obj.getNameOfProduct().equals(string)) {
+	                logger.log(Level.INFO, "This product exists");
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
 	}
 
 
@@ -151,7 +155,7 @@ name_of_product=string;	}
 
 	@Override
 	public String toString() {
-		return "Product [num_product=" + num_product + ", name_of_product=" + name_of_product + ", price=" + price
+		return "Product [num_product=" + num_product + ", name_of_product=" + nameOfProduct + ", price=" + price
 				+ ", count=" + count + ", SalesCount=" + SalesCount + ", UserNameOfOrderOwner=" + UserNameOfOrderOwner
 				+ "]";
 	}
@@ -160,12 +164,14 @@ name_of_product=string;	}
 
 	public static boolean UpdateNameOfProduct(String string, String string2) {
 		
-		boolean existname=false;
-		for (Entry<String, Product> entry : myappsweet.products.entrySet()) {
-        	Product product = entry.getValue();
-        	if(product.getName_of_product().equals(string2))
-        		existname=true;
-        }
+		boolean existname = false;
+    	for (java.util.Map.Entry<String, Product> entry : myappsweet.products.entrySet()) {
+    	    Product product = entry.getValue();
+    	    if (product.getNameOfProduct().equals(string2)) {
+    	        existname = true;
+    	    }
+    	}
+
 		
 		if (string2.isEmpty() || existname) {
 	        System.out.println("Sorry, you are missing important data OR repeated name");
@@ -175,12 +181,12 @@ name_of_product=string;	}
 	    
 	    // Iterate over the products to find the one with the specified old name
 	    for (Product product : myappsweet.getProducts().values()) {
-	        if (product.getName_of_product().equals(string)) {
+	        if (product.getNameOfProduct().equals(string)) {
 	        	 //Product.listofproduct.remove(string);
 	            product.setName_of_product(string2); // Update the product name
 	            product.setCount(product.getCount());
-	            product.setNum_product(product.getNum_product());
-	            System.out.println(product.getNum_product());
+	            product.setNumProduct(product.getNumProduct());
+	            System.out.println(product.getNumProduct());
 
 	            product.setPrice(product.getPrice());
 	            System.out.println("Updating done successfully");
@@ -195,14 +201,15 @@ name_of_product=string;	}
 
 
 	public static boolean CheckNameAndCount(String string, Integer int1) {
-		for (Product product : myappsweet.getProducts().values()) {
-            if (product.getName_of_product().equals(string) && product.getCount()==int1 ) {
-            	myappsweet.getProducts().put(String.valueOf(product.getNum_product()), product);
-                return true;
-            }
-        }
-
-	return false;
+		 for (Product product : myappsweet.getProducts().values()) {
+		        if (product != null && product.getNameOfProduct() != null) {
+		            if (product.getNameOfProduct().equals(string) && product.getCount() == int1) {
+		                myappsweet.getProducts().put(String.valueOf(product.getNumProduct()), product);
+		                return true;
+		            }
+		        }
+		    }
+		    return false;
 		
 		
 	}
@@ -236,10 +243,10 @@ name_of_product=string;	}
          if(CheckNameAndCount(string,int1)) {
 	       listofproduct=myappsweet.getProducts();
 	       for (Product product : listofproduct.values()) {
-	            if (product.getName_of_product().equals(string)) {
+	            if (product.getNameOfProduct().equals(string)) {
 	            	if(product.getCount() == int1)
 	                product.setCount(int2);;
-	                listofproduct.put(Integer.toString(product.getNum_product()), product);
+	                listofproduct.put(Integer.toString(product.getNumProduct()), product);
 	                System.out.println("Update done successfully");
 	                return true;
 	            }
@@ -253,13 +260,16 @@ name_of_product=string;	}
 
 	public boolean checkifwehaveEnoughItems(String string, int numberofitems) {
       
-		 for (Product product : myappsweet.getProducts().values()) {
-	            if (product.getName_of_product().equals(string)) {
-	            	if(product.getCount()>=numberofitems)
-	                return true;
-	            }
-		 }
-		return false;
+		   for (Product product : myappsweet.getProducts().values()) {
+		        // Check if product and its name are not null
+		        if (product != null && product.getNameOfProduct() != null) {
+		            // Check if the product name matches and the count is sufficient
+		            if (product.getNameOfProduct().equals(string) && product.getCount() >= numberofitems) {
+		                return true;
+		            }
+		        }
+		    }
+		    return false;
 		
 	}
 
@@ -270,15 +280,15 @@ name_of_product=string;	}
 		 Product v;
 		//String x=String.valueOf(p.getOrderId());
 		for (Product product : myappsweet.getProducts().values()) {
-            if (product.getName_of_product().equals(p.getName_of_product())) {
+            if (product.getNameOfProduct().equals(p.getNameOfProduct())) {
                n=product.getPrice();
-               Product c=new Product(product.getNum_product(),p.getName_of_product(),product.getPrice(),p.getSalesCount());
-               Product d=new Product(p.getName_of_product(),p.getSalesCount(),p.getUserNameOfOrderOwner(),product.getPrice());
+               Product c=new Product(product.getNumProduct(),p.getNameOfProduct(),product.getPrice(),p.getSalesCount());
+               Product d=new Product(p.getNameOfProduct(),p.getSalesCount(),p.getUserNameOfOrderOwner(),product.getPrice());
        		String x=String.valueOf(d.getOrderId());
             //  System.out.println(d.getOrderId());
             //   System.out.println(d);
    			itemsbuy.put(x, d);
-   			p.DecreaseTheNumberOfItems(p.getName_of_product(), p.getSalesCount());
+   			p.DecreaseTheNumberOfItems(p.getNameOfProduct(), p.getSalesCount());
    			boolean paiedmoney=false;
    			System.out.println("Do you want to order more?   (yes/no)");
    		//Scanner scanner = new Scanner(System.in);
@@ -301,9 +311,9 @@ name_of_product=string;	}
 
 	public void DecreaseTheNumberOfItems(String string, int numberofitems) {
 		 for (Product product : myappsweet.getProducts().values()) {
-	            if (product.getName_of_product().equals(string)) {
+	            if (product.getNameOfProduct().equals(string)) {
 	            	product.setCount(product.getCount()-numberofitems);;
-	            	myappsweet.getProducts().put(Integer.toString(product.getNum_product()), product);
+	            	myappsweet.getProducts().put(Integer.toString(product.getNumProduct()), product);
 	            }
 		 }
 	boolean v=SetSales(string,numberofitems)	; 
@@ -327,7 +337,7 @@ name_of_product=string;	}
 
 
 	public boolean CheckWeDefineQuantity(Product p) {
-      if(p.getNum_product()==0) {
+      if(p.getNumProduct()==0) {
 		return false;}
       else
       { return true;}
@@ -389,7 +399,9 @@ name_of_product=string;	}
 
 	
 	
-
+	
+	
+	
 
 	
 	
