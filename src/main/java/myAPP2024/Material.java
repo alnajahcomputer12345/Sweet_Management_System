@@ -13,7 +13,6 @@ package myAPP2024;
 	    private int quantityavailable;
 	    
 	    
-	    
 		
 		public Material(int materialId, String name, double price, int quantityavailable) {
 			super();
