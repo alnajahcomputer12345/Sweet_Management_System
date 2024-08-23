@@ -16,7 +16,7 @@ import myAPP2024.myappsweet;
 
 public class Admin_add_aothers_Steps {
 
- private myappsweet app;
+     private myappsweet app;
     private String username;
     private String password;
     private String email;
@@ -67,18 +67,18 @@ public class Admin_add_aothers_Steps {
     	if (type != null) {
             String lowerCaseType = type.toLowerCase();
             if ("beneficiary user".equals(lowerCaseType)) {
-                this.kindofuser = Type.beneficiaryUser;
+                this.kindofuser = Type.BENEFICIARY_USER;
                 assertTrue("beneficiaryUser",true);
             } else if ("raw material supplier".equals(lowerCaseType)) {
-                this.kindofuser = Type.rawmaterialsupplier;
+                this.kindofuser = Type.RAW_MATERIAL_SUPPLIER;
                 assertTrue("rawmaterialsupplier",true);
 
             } else if ("store owner".equals(lowerCaseType)) {
-                this.kindofuser = Type.storeowner;
+                this.kindofuser = Type.STORE_OWNER;
                 assertTrue("storeowner",true);
 
             } else if ("admin".equals(lowerCaseType)) {
-                this.kindofuser = Type.admin;
+                this.kindofuser = Type.ADMIN;
                 assertTrue("admin",true);
 
             } else {
@@ -127,16 +127,16 @@ public class Admin_add_aothers_Steps {
         newUser.toString();
 
         switch (kindofuser) {
-            case beneficiaryUser:
+            case BENEFICIARY_USER:
                 msg = "New beneficiary user added successfully";
                 break;
-            case rawmaterialsupplier:
+            case RAW_MATERIAL_SUPPLIER:
                 msg = "New raw material supplier added successfully";
                 break;
-            case storeowner:
+            case STORE_OWNER:
                 msg = "New store owner added successfully";
                 break;
-            case admin:
+            case ADMIN:
                 msg = "New admin added successfully";
                 break;
             default:
@@ -175,7 +175,7 @@ public class Admin_add_aothers_Steps {
     public void the_user_already_exists(String username) {
       
         if (!app.userExists(username)) {
-            User newUser = new User(username, "9999", username + "@gmail.com", Type.beneficiaryUser);
+            User newUser = new User(username, "9999", username + "@gmail.com", Type.BENEFICIARY_USER);
             app.addUser(newUser);
             assertTrue("the user exist",!app.userExists(username));
         }
