@@ -8,14 +8,16 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.List;
 import java.util.*;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class myappsweet {
 
 
 
 
-boolean pricefill=false;
+	boolean pricefill=false;
+    private static final Logger logger = Logger.getLogger(myappsweet.class.getName());
 
         public static Map<String, Message> getMessages() {
 		return messages;
@@ -51,77 +53,80 @@ boolean pricefill=false;
 
 	    
 		public void printpagename() {
-			System.out.println("You are in the add new product")	;	
+			   logger.log(Level.INFO, "You are in the add new product");
 			
 		}
         
 		public boolean checkifexist(String string) {
-			// TODO Auto-generated method stub
 			for (Product obj : products.values()) {
-	            if (obj.getName_of_product().equals(string)) {
-	//System.out.println("This product is exist");
-	return true;
-	            }
+			    String productName = obj.getNameOfProduct();
+			    if (productName != null && productName.equals(string)) {
+			        return true;
+			    }
 			}
-			//System.out.println("The product not exist in system");
-			return false;		
-		}
+			return false;	}
+		
 		
 		public void checkifpricefill(Product p) {
 			if(p.getPrice()==0.0)
-		    	System.out.println("You missing an important details");	
+				  logger.log(Level.INFO, "You missing an important details");
 			else
 				pricefill=true;
 		}
 
 		public void printerrormessage() {
-			System.out.println("You can not add this product you missing an important details");
+			  logger.log(Level.INFO, "You can not add this product you missing an important details");
 			
 		}
 
 
 		public boolean checkifexisttoremove(Product p) {
 			for (Product obj : products.values()) {
-		        if (obj.getNum_product() == p.getNum_product() && obj.getName_of_product().equals(p.getName_of_product())) {
-		            System.out.println("This product exists");
+		        // Check if obj and p are not null, and their attributes are also not null
+		        if (obj.getNumProduct() == p.getNumProduct() && 
+		            obj.getNameOfProduct() != null && 
+		            obj.getNameOfProduct().equals(p.getNameOfProduct())) {
+		            logger.log(Level.INFO, "This product exists");
 		            return true;
 		        }
 		    }
-		    System.out.println("This product does not exist");
+		    logger.log(Level.INFO, "This product does not exist");
 		    return false;
 		}
 
 		public void RemoveProduct(Product p) {
 			if(EnterAllRequieredToDelete(p)) {
             if(checkifexisttoremove(p)) {
-			products.remove(String.valueOf(p.getNum_product()));
-			System.out.println("Remove done successfully");}
+			products.remove(String.valueOf(p.getNumProduct()));
+			  logger.log(Level.INFO, "Remove done successfully");
+
+            }
             
             else
-            	System.out.println("This product not exist");
+          	  logger.log(Level.INFO, "This product not exist");
 			}
 			else
-				System.out.println("Sorry ,You miss an important details");
+				 logger.log(Level.INFO, "Sorry ,You miss an important details");
 			
 		}
 
 		public void printproductnotexist() {
-			System.out.println("This product not exist");		
+			logger.log(Level.INFO, "This product not exist");
 				}
 
 		public boolean EnterAllRequieredToDelete(Product p) {
 			// TODO Auto-generated method stub
-			if(p.getName_of_product()!=" " && p.getNum_product()!=0)
+			if(p.getNameOfProduct()!=" " && p.getNumProduct()!=0)
 				return true;
 			else {
-				if(p.getName_of_product()==" ") {
+				if(p.getNameOfProduct()==" ") {
 					
 				
 					forgettenfield= "product name";}
 					else 
 						forgettenfield= "product number";
 		
-		        System.out.println("You may forget to enter an important detail: " + forgettenfield);
+				logger.log(Level.INFO, "You may forget to enter an important detail: " + forgettenfield);
 				}
 				return false;
 		
@@ -129,43 +134,53 @@ boolean pricefill=false;
 
 
 		
-public void addnewProduct(Product p) {
+		public void addnewProduct(Product p) {
 			
-			String x=String.valueOf(p.getNum_product());
+			String x=String.valueOf(p.getNumProduct());
 			boolean b=false;
 	        for (HashMap.Entry<String, Product> entry : products.entrySet()) {
 	        	Product product = entry.getValue();
-	        	if(product.getNum_product()==p.getNum_product())
+	        	if(product.getNumProduct()==p.getNumProduct())
 	        		b=true;
 	        }
-			 
-			
-			if(checkifexist(p.getName_of_product()) || b) {
-				System.out.println("The product is exist OR check your datat well");
+			 		
+			if(checkifexist(p.getNameOfProduct()) || b) {
+				logger.log(Level.INFO, "The product is exist OR check your datat well");
+				
 				return;
 			}
 			else {
 				checkifpricefill(p);
-				if(pricefill && p.getNum_product()!=0 &&p.getName_of_product()!="" && p.getCount()!=0) {
+				if(pricefill && p. getNumProduct()!=0 &&p.getNameOfProduct()!="" && p.getCount()!=0) {
 					products.put(x, p);
-					System.out.println("Adding Product Successfully");
+					logger.log(Level.INFO, "Adding Product Successfully");
+				
 					}
 			
 			else
-				System.out.println("Sorry check the data you entered , there is a missing data");}}
-		//	products.put(x, p);}
-
+				logger.log(Level.INFO, "Sorry check the data you entered , there is a missing data");}
+			
+			for (HashMap.Entry<String, Product> entry : products.entrySet()) {
+	        	Product product = entry.getValue();
+	        	System.out.println(product);
+	        }
 		
+		
+		
+		}
+				
+	
+
 
 public void printDone() {
-	System.out.println("Adding Done");
+	logger.log(Level.INFO, "Adding Done");
 	
 }
 
 public void viewlistofproducts() {
 	
 	 for (String key : products.keySet()) {
-        System.out.println("Key: " + key + ", Value: " + products.get(key));
+		 logger.log(Level.INFO, "Key: " + key + ", Value: " + products.get(key));
     }
 }
 
@@ -182,25 +197,25 @@ public void viewlistofproducts() {
 	    private boolean exit;
 
 	        public myappsweet() {
-	        users.put("Bisan", new User("Bisan", "0000", "bisan@gmail.com", Type.beneficiaryUser));
-	        users.put("Bisan_joo", new User("Bisan_joo", "password123", "bisan_joo@gmail.com", Type.beneficiaryUser));
-	        admins.put("ahmad", new User("ahmad", "0000", "ahmad@gmail.com", Type.admin));
-	        owners.put("ali", new User("ali", "0000", "ali@gmail.com", Type.storeowner));
-	        rawSuppliers.put("sami", new User("sami", "0000", "sami@gmail.com", Type.rawmaterialsupplier));
-	        users.put("amal", new User("amal", "0000", "amal@gmail.com", Type.beneficiaryUser));
-	        rawSuppliers.put("amjad", new User("amjad", "0000", "amjad@gmail.com", Type.rawmaterialsupplier));
-	        owners.put("saden", new User("saden", "0000", "saden@gmail.com", Type.storeowner));
-	        admins.put("Ruba", new User("Ruba", "0000", "Ruba@gmail.com", Type.admin));
-	        owners.put("alia", new User("alia", "0000", "alia@gmail.com", Type.storeowner));
-	        products.put("1", new Product(1, "cake",2.5 ,150));
+	        users.put("Bisan", new User("Bisan", "0000", "bisan@gmail.com", Type.BENEFICIARY_USER));
+	        users.put("Bisan_joo", new User("Bisan_joo", "password123", "bisan_joo@gmail.com", Type.BENEFICIARY_USER));
+	        admins.put("ahmad", new User("ahmad", "0000", "ahmad@gmail.com", Type.ADMIN));
+	        owners.put("ali", new User("ali", "0000", "ali@gmail.com", Type.STORE_OWNER));
+	        rawSuppliers.put("sami", new User("sami", "0000", "sami@gmail.com", Type.RAW_MATERIAL_SUPPLIER));
+	        users.put("amal", new User("amal", "0000", "amal@gmail.com", Type.BENEFICIARY_USER));
+	        rawSuppliers.put("amjad", new User("amjad", "0000", "amjad@gmail.com", Type.RAW_MATERIAL_SUPPLIER));
+	        owners.put("saden", new User("saden", "0000", "saden@gmail.com", Type.STORE_OWNER));
+	        admins.put("Ruba", new User("Ruba", "0000", "Ruba@gmail.com", Type.ADMIN));
+	        owners.put("alia", new User("alia", "0000", "alia@gmail.com", Type.STORE_OWNER));
+	        products.put("1", new Product(1,"cake",2.5 ,150));
 	        products.put("2", new Product(2, "tarte", 6.0 ,146));
 	        products.put("3", new Product(3, "kunafa",10.5 ,189));
 	        allRecipe.put("Cake", new Recipe("Cake", "diet", "Mix flour, sugar, and eggs", users.get("Bisan")));
 	        allRecipe.put("cake with coffee", new Recipe("cake with coffee", "suger free", "Mix ingredients", users.get("Bisan_joo")));
 	        allRecipe.put("cake with milk", new Recipe("cake with milk", "Glutien free", "Mix ingredientsr", users.get("amal")));
-	        admins.put("Bisan M Joudeh", new User("Bisan M Joudeh", "0000", "Bisan12@gmail.com",Type.admin));
+	        admins.put("Bisan M Joudeh", new User("Bisan M Joudeh", "0000", "Bisan12@gmail.com",Type.ADMIN));
 	        messages.put("bisan@gmail.com",new Message("bisan@gmail.com","ali@gmail.com","Hello"));
-	        rawSuppliers.put("salwa", new User("salwa", "0000", "salwa@gmailk55RTU.com", Type.rawmaterialsupplier));
+	        rawSuppliers.put("salwa", new User("salwa", "0000", "salwa@gmailk55RTU.com", Type.RAW_MATERIAL_SUPPLIER));
 	        allMaterials.put("1", new Material(1, "flour", 2.5, 150));
 	        allMaterials.put("2", new Material(2, "sugar", 6.0, 203)); 
 	        allMaterials.put("3", new Material(3, "butter", 10.5, 96));
@@ -225,7 +240,7 @@ public void setAddmaterial(boolean addmaterial) {
 		        	if(mm.getName().equals(m.getName()))
 		        		existmaterial=true;
 		        	else if(mm.getMaterialId()==m.getMaterialId()) {
-		        		System.out.println("Sorry,This number of the new material exist , try another number");
+		        		logger.log(Level.INFO, "Sorry,This number of the new material exist , try another number");
 		        	return;}
 		        }
 				if(getMaterial(m.getName())==null && !existmaterial) {
@@ -233,29 +248,27 @@ public void setAddmaterial(boolean addmaterial) {
 				{String x=String.valueOf(m.getMaterialId());
 				allMaterials.put(x, m);
 				addmaterial=true;
-				System.out.println("Adding new material successfully done");}
+				logger.log(Level.INFO, "Adding new material successfully done");
+				}
 					else
-						System.out.println("Sorry , you miss important details");}
+						logger.log(Level.INFO, "Sorry , you miss important details");
+				}
 				else
-					System.out.println("This material already exist");
+					logger.log(Level.INFO, "This material already exist");
+				
 
 			}
 
+
 	        public void removeMaterial(String materialName) {
-		        /*if (allMaterials.containsKey(materialName)) {
-		            allMaterials.remove(materialName);
-		            System.out.println("Material removed: " + materialName);
-		        } else {
-		            System.out.println("Material not found: " + materialName);
-		        }*/
-	        	
+		      	        	
 	        	for (Material material : allMaterials.values()) {
 	        		if(material.getName().equals(materialName)) {
 	        			allMaterials.remove(String.valueOf(material.getMaterialId()));
-		            System.out.println("Material removed: " + materialName);
+	        			logger.log(Level.INFO, "Material removed: " + materialName);
 		            return;}
 	        	}
-	            System.out.println("Material not found: " + materialName);
+	        	logger.log(Level.INFO, "Material not found: " + materialName);
 
 	        	
 		    }
@@ -278,23 +291,23 @@ public void setAddmaterial(boolean addmaterial) {
 		       Recipe  recipe = getRecipe(recipeName);
 
 		        if (user == null) {
-		            System.out.println("You must be logged in to add feedback.");
+		        	logger.log(Level.INFO, "You must be logged in to add feedback.");
 		            return;
 		        }
 
 		        if (recipe == null) {
-		            System.out.println("Recipe not found. Feedback cannot be added.");
+		        	logger.log(Level.INFO, "Recipe not found. Feedback cannot be added.");
 		            return;
 		        }
 
 		        if (feedbackContent == null || feedbackContent.trim().isEmpty()) {
-		            System.out.println("Feedback cannot be empty.");
+		        	logger.log(Level.INFO, "Feedback cannot be empty.");
 		            return;
 		        }
 
 		        Feedback feedback = new Feedback(feedbackContent, user, recipe);
 		        recipe.addFeedback(feedback);
-		        System.out.println("Feedback added successfully.");
+		    	logger.log(Level.INFO, "Feedback added successfully.");
 		    }
 
 	    
@@ -307,9 +320,9 @@ public void setAddmaterial(boolean addmaterial) {
 		            }
 		        }
 		        if(filteredrecipes.isEmpty())
-		        System.out.println("Sorry No Result");
+		        	logger.log(Level.INFO, "Sorry No Result");
 		        else {
-			        System.out.println("This is the result:");
+		        	logger.log(Level.INFO, "This is the result:");
 			        for (Recipe recipe : filteredrecipes) {
 			            System.out.println(recipe);
 			        }}
@@ -346,16 +359,16 @@ public void setAdduser(boolean adduser) {
 
 		public void addUser(User user) {
 	        switch (user.getKindofuser()) {
-	            case beneficiaryUser:
+	            case BENEFICIARY_USER:
 	                users.put(user.getUsername(), user);
 	                break;
-	            case admin:
+	            case ADMIN:
 	                admins.put(user.getUsername(), user);
 	                break;
-	            case storeowner:
+	            case STORE_OWNER:
 	                owners.put(user.getUsername(), user);
 	                break;
-	            case rawmaterialsupplier:
+	            case RAW_MATERIAL_SUPPLIER:
 	                rawSuppliers.put(user.getUsername(), user);
 	                break;
 	        }
@@ -425,10 +438,10 @@ public void setAdduser(boolean adduser) {
 	        
 			if ( recipe.getRecipeName() != null && !existrecipe) {
 	            allRecipe.put(recipe.getRecipeName(), recipe);
-	            System.out.println("Recipe added: " + recipe.getRecipeName());
+	            logger.log(Level.INFO, "Recipe added: " + recipe.getRecipeName());
 	            addrecipe=true;
 	        } else {
-	            System.out.println("recipe or recipe name cannot be null or it is exist already");
+	        	 logger.log(Level.INFO, "recipe or recipe name cannot be null or it is exist already");
 	        }
 	    }
 
@@ -451,9 +464,9 @@ public void setAdduser(boolean adduser) {
 	    public void removeRecipe(String recipeName) {
 	        if (allRecipe.containsKey(recipeName)) {
 	            allRecipe.remove(recipeName);
-	            System.out.println("Recipe removed: " + recipeName);
+	            logger.log(Level.INFO, "Recipe removed: " + recipeName);
 	        } else {
-	            System.out.println("Recipe not found: " + recipeName);
+	        	logger.log(Level.INFO, "Recipe not found: " + recipeName);
 	        }
 	    }
 	    	    
@@ -476,9 +489,9 @@ public void setAdduser(boolean adduser) {
 	    public void removesupplier(String sname) {
 	        if (rawSuppliers.containsKey(sname)) {
 	            rawSuppliers.remove(sname);
-	            System.out.println("Raw Supplier removed: " + sname);
+	            logger.log(Level.INFO, "Raw Supplier removed: " + sname);
 	        } else {
-	            System.out.println("Raw Supplier not found: " + sname);
+	        	   logger.log(Level.INFO, "Raw Supplier not found: " + sname);
 	        }
 	    }
 	    
@@ -486,9 +499,9 @@ public void setAdduser(boolean adduser) {
 	    public void removeowner(String oname) {
 	        if (owners.containsKey(oname)) {
 	            owners.remove(oname);
-	            System.out.println("Owner removed: " + oname);
+	            logger.log(Level.INFO, "Owner removed: " + oname);
 	        } else {
-	            System.out.println("Owner not found: " + oname);
+	        	 logger.log(Level.INFO, "Owner not found: " + oname);
 	        }
 	    }
 	    
@@ -530,10 +543,10 @@ public void setAdduser(boolean adduser) {
 
 	    public void GenerateReport() {
 			 for (Sales r : Sales.sales.values()) {
-		            System.out.println(r.getName() +"  "+r.getSale());
+				 logger.log(Level.INFO, r.getName() +"  "+r.getSale());
 		        }
 			 if(Sales.sales.isEmpty())
-				 System.out.println("There is no sales");
+				 logger.log(Level.INFO, "There is no sales");
 		}
   String b;
   public String BestProduct() {
@@ -561,8 +574,9 @@ public void setAdduser(boolean adduser) {
       for (Message obj : myappsweet.messages.values()) {
           // Safely compare strings using Objects.equals
           if (Objects.equals(obj.getTo(), string)) {
-              System.out.println("There is a message for you");
-              System.out.println(obj.getContent());
+        	  logger.log(Level.INFO,"There is a message for you");
+         	 logger.log(Level.INFO,obj.getContent());
+
               return true;
           }
       }
@@ -593,96 +607,100 @@ public void setAdduser(boolean adduser) {
  
 	
 	    public void signup(Scanner scanner) {
-	        System.out.println("\nSign Up");
-	        System.out.print("Enter username: ");
+	    	logger.log(Level.INFO, "\nSign Up");
+	        logger.log(Level.INFO, "Enter username: ");
 	        String username = scanner.nextLine();
-	        System.out.print("Enter password: ");
+	        logger.log(Level.INFO, "Enter password: ");
 	        String password = scanner.nextLine();
-	        System.out.print("Enter email: ");
+	        logger.log(Level.INFO, "Enter email: ");
 	        String email = scanner.nextLine();
 
 	        if (userExists(username)) {
-	            System.out.println("Registration failed. Username '" + username + "' already exists.");
+	            logger.log(Level.WARNING, "Registration failed. Username '" + username + "' already exists.");
 	        } else {
-	            System.out.println("Select user type:");
-	            System.out.println("1. Beneficiary User");
-	            System.out.println("2. Admin");
-	            System.out.println("3. Store Owner");
-	            System.out.println("4. Raw Material Supplier");
-	            System.out.print("Choose an option: ");
+	            logger.log(Level.INFO, "Select user type:");
+	            logger.log(Level.INFO, "1. Beneficiary User");
+	            logger.log(Level.INFO, "2. Admin");
+	            logger.log(Level.INFO, "3. Store Owner");
+	            logger.log(Level.INFO, "4. Raw Material Supplier");
+	            logger.log(Level.INFO, "Choose an option: ");
 	            int userTypeChoice = scanner.nextInt();
 	            scanner.nextLine();
 
 	            Type userType;
 	            switch (userTypeChoice) {
 	                case 1:
-	                    userType = Type.beneficiaryUser;
+	                    userType = Type.BENEFICIARY_USER;
 	                    break;
 	                case 2:
-	                    userType = Type.admin;
+	                    userType = Type. ADMIN;
 	                    break;
 	                case 3:
-	                    userType = Type.storeowner;
+	                    userType = Type.STORE_OWNER;
 	                    break;
 	                case 4:
-	                    userType = Type.rawmaterialsupplier;
+	                    userType = Type.RAW_MATERIAL_SUPPLIER;
 	                    break;
 	                default:
-	                    System.out.println("Invalid option. Defaulting to Beneficiary User.");
-	                    userType = Type.beneficiaryUser;
+	                    logger.log(Level.WARNING, "Invalid option. Defaulting to Beneficiary User.");
+	                    userType = Type.BENEFICIARY_USER;
 	            }
 
 	            User newUser = new User(username, password, email, userType);
 	            addUser(newUser);
-	            System.out.println("Registration successful!");
+	            logger.log(Level.INFO, "Registration successful!");
 	        }
+
 	    }
 
 	   
 	    public void login(Scanner scanner) {
-	        System.out.println("\nLog In");
-	        System.out.print("Enter username: ");
-	        String username = scanner.nextLine();
-	        System.out.print("Enter password: ");
-	        String password = scanner.nextLine();
+	    	 logger.log(Level.INFO, "\nLog In");
+		        logger.log(Level.INFO, "Enter username: ");
+		        String username = scanner.nextLine();
+		        logger.log(Level.INFO, "Enter password: ");
+		        String password = scanner.nextLine();
 
-	        if (authenticate(username, password)) {
-	            activeuser = getUser(username);
-	            islogged = true;
-	            System.out.println("Login successful. Welcome " + getUserTypeName(activeuser.getKindofuser()) + " " + username);
-	        } else {
-	            System.out.println("Login failed. Incorrect username or password.");
-	        }
+		        if (authenticate(username, password)) {
+		            activeuser = getUser(username);
+		            islogged = true;
+		            logger.log(Level.INFO, "Login successful. Welcome {0} {1}", 
+		                       new Object[]{getUserTypeName(activeuser.getKindofuser()), username});
+		        } else {
+		            logger.log(Level.WARNING, "Login failed. Incorrect username or password.");
+		        }
+
 	    }
 
 	   
 	    public void logout(Scanner scanner) {
-	        System.out.println("\nLog Out");
+	    	logger.log(Level.INFO, "\nLog Out");
 	        if (!islogged) {
-	            System.out.println("You cannot log out. Please log in first.");
+	            logger.log(Level.WARNING, "You cannot log out. Please log in first.");
 	        } else {
-	            System.out.print("Are you sure you want to log out? (yes/no) ");
+	            logger.log(Level.INFO, "Are you sure you want to log out? (yes/no) ");
 	            String confirmation = scanner.nextLine();
 	            if (confirmation.equalsIgnoreCase("yes")) {
 	                activeuser = null;
 	                islogged = false;
-	                System.out.println("You have successfully logged out.");
+	                logger.log(Level.INFO, "You have successfully logged out.");
 	            } else {
-	                System.out.println("Logout canceled.");
+	                logger.log(Level.INFO, "Logout canceled.");
 	            }
+
 	        }
 	    }
 
 	  
 	    public String getUserTypeName(Type type) {
 	        switch (type) {
-	            case beneficiaryUser:
+	            case BENEFICIARY_USER:
 	                return "user";
-	            case admin:
+	            case ADMIN:
 	                return "admin";
-	            case storeowner:
+	            case STORE_OWNER:
 	                return "owner";
-	            case rawmaterialsupplier:
+	            case RAW_MATERIAL_SUPPLIER:
 	                return "Raw Material Supplier";
 	            default:
 	                return "unknown";
@@ -697,47 +715,47 @@ public void setAdduser(boolean adduser) {
 	    
 	   
 	    private void addRecipe(Scanner scanner) {
-	        System.out.println("Add a new recipe");
-	        System.out.print("Enter recipe name: ");
+	    	logger.log(Level.INFO, "Add a new recipe");
+	        logger.log(Level.INFO, "Enter recipe name: ");
 	        String recipeName = scanner.nextLine();
-	        System.out.print("Enter recipe details: ");
+	        logger.log(Level.INFO, "Enter recipe details: ");
 	        String details = scanner.nextLine();
-	        System.out.print("Enter recipe instructions: ");
+	        logger.log(Level.INFO, "Enter recipe instructions: ");
 	        String instructions = scanner.nextLine();
 
 	        Recipe recipe = new Recipe(recipeName, details, instructions, activeuser);
 	        addRecipe(recipe);
+	        logger.log(Level.INFO, "Recipe added successfully", recipeName);
 	       
 	    }
 
 	 
 	    public void viewAllRecipes() {
-	        System.out.println("Displaying all recipes...");
+	    	logger.log(Level.INFO, "Displaying all recipes...");
 	        for (Recipe recipe : allRecipe.values()) {
-	            System.out.println(recipe);
+	            logger.log(Level.INFO, recipe.toString());
 	        }
+
 	    }
 
 	   
 	    private void deleteRecipe(Scanner scanner) {
-	        System.out.println("Delete a recipe");
-	        System.out.print("Enter recipe name to delete: ");
+	        logger.log(Level.INFO, "Delete a recipe");
+	        logger.log(Level.INFO, "Enter recipe name to delete: ");
 	        String recipeName = scanner.nextLine();
 
 	        Recipe recipe = getRecipe(recipeName);
 	        if (recipe != null && recipe.getSharedBy().equals(activeuser)) {
 	            removeRecipe(recipeName);
-	            System.out.println("Recipe deleted: " + recipeName);
-	        } else if(recipe==null) {
-	            System.out.println("Recipe not found.");
-	        }
-	        else {
-	        	System.out.println("You can not delete a recipe that does not belong to you");
+	            logger.log(Level.INFO, "Recipe deleted: {0}", recipeName);
+	        } else if (recipe == null) {
+	            logger.log(Level.WARNING, "Recipe not found: {0}", recipeName);
+	        } else {
+	            logger.log(Level.WARNING, "You cannot delete a recipe that does not belong to you: {0}", recipeName);
 	        }
 	    }
-
-
-	
+	 
+        
 	 
         
     }
