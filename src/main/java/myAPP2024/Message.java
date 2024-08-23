@@ -2,12 +2,14 @@ package myAPP2024;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 public class Message {
     String from;
     String to;
     String Content;
-	
+    private static final Logger logger = Logger.getLogger(Message.class.getName());
+
 
 	public Message(String string, String string2, String string3) {
      from=string;
@@ -15,8 +17,6 @@ public class Message {
      Content=string3;
 	}
 
-
-	
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
@@ -27,23 +27,23 @@ public class Message {
 		//String reciever=StoreOwnerOrRawSupplier.getEmail();
 		 for (User obj : myappsweet.getOwners().values()) 
 	    	   if (obj.getEmail().equals(r)) {
-	               System.out.println("You choose a correct owner email");
+	                logger.log(Level.INFO, "You choose a correct owner email");
 	               return true;
 	           }
 		 
 		 for(User obj : myappsweet.users.values())
 			 if (obj.getEmail().equals(r)) {
-	               System.out.println("You choose a correct user email");
+	                logger.log(Level.INFO, "You choose a correct user email");
 	               return true;
 	           }
 		 
 		 for(User obj : myappsweet.rawSuppliers.values())
 			 if (obj.getEmail().equals(r)) {
-	               System.out.println("You choose a correct supplier email");
+	                logger.log(Level.INFO, "You choose a correct supplier email");
 	               return true;
 	           }
 		
-			System.out.println("choose another email to send");
+	        logger.log(Level.WARNING, "Choose another email to send");
 			return false;
 	}
 
@@ -64,10 +64,10 @@ public class Message {
 			myappsweet.messages.put(String.valueOf(currentKey), m);	
 			currentKey++; 
 			sendmessage=true;
-		      System.out.println("Your message sent");
+            logger.log(Level.INFO, "Your message was sent");
 		}
 		else
-			System.out.println("Sorry,check the details of message");
+            logger.log(Level.WARNING, "Sorry, check the details of the message");
 	}
 
 	public String getFrom() {
@@ -96,26 +96,29 @@ public class Message {
 
 	public static boolean checkifiselectareciption(Message m) {
 		// TODO Auto-generated method stub
-		if(m.getTo()=="") {
-			System.out.println("Please select a reciption");
+		if (m.getTo().equals("")) {
+            logger.log(Level.WARNING, "Please select a recipient");
 			return false;}
-		
-		return true;
+		else {
+		return true;}
 	}
 
 	public static boolean checkifienteramessage(Message m) {
 		// TODO Auto-generated method stub
-		if(m.getContent()=="") {
-			System.out.println("Please enter your message");
-			return false;}
-	else
-		return true;
+		 if (m.getContent().equals("")) {
+	            logger.log(Level.WARNING, "Please enter your message");
+	            return false;
+	        } else {
+	            return true;
+	        }
+
 	}
 
 	@Override
 	public String toString() {
 		return "Message [from=" + from + ", to=" + to + ", Content=" + Content + "]";
 	}
+	
 	
 	
 
