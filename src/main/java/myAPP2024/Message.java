@@ -10,7 +10,6 @@ public class Message {
     String Content;
     private static final Logger logger = Logger.getLogger(Message.class.getName());
 
-
 	public Message(String string, String string2, String string3) {
      from=string;
      to=string2;
