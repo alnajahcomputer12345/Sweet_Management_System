@@ -15,7 +15,6 @@ public class myappsweet {
 
 
 
-
 	boolean pricefill=false;
     private static final Logger logger = Logger.getLogger(myappsweet.class.getName());
 
