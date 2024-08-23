@@ -15,6 +15,7 @@ public class Recipe {
     private User sharedBy;
     private String category;
 
+	
     public Recipe(String recipeName, String details, String instructions, User sharedBy) {
         if (recipeName == null || recipeName.isEmpty()) {
             throw new IllegalArgumentException("Recipe name cannot be null or empty");
