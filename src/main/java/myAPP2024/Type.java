@@ -2,6 +2,6 @@ package myAPP2024;
 
 public enum Type
 {
-	beneficiaryUser,admin,storeowner,rawmaterialsupplier
+	BENEFICIARY_USER, ADMIN, STORE_OWNER, RAW_MATERIAL_SUPPLIER
 
 };
