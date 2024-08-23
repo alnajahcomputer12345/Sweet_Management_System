@@ -57,7 +57,7 @@ import static org.junit.Assert.assertTrue;
     @Then("the system should create a new regular user account")
     public void the_system_should_create_a_new_regular_user_account() {
         if ( msg.contains("valid username")) {
-            User u = new User(username, password, email, Type.beneficiaryUser);
+            User u = new User(username, password, email, Type.BENEFICIARY_USER);
             app.addUser(u);
             assertTrue(app.isAdduser());
         
@@ -88,7 +88,7 @@ import static org.junit.Assert.assertTrue;
     @Then("the system should create a new admin account")
     public void the_system_should_create_a_new_admin_account() {
         if ( msg.contains("valid username")) {
-            User u = new User(username, password, email, Type.admin);
+            User u = new User(username, password, email, Type.ADMIN);
             app.addUser(u);
             assertTrue(app.isAdduser());
       
@@ -112,7 +112,7 @@ import static org.junit.Assert.assertTrue;
     @Then("the system should create a new owner account")
     public void the_system_should_create_a_new_owner_account() {
         if ( msg.contains("valid username")) {
-            User u = new User(username, password, email, Type.storeowner);
+            User u = new User(username, password, email, Type.STORE_OWNER);
             app.addUser(u);
             assertTrue(app.isAdduser());
        
@@ -136,7 +136,7 @@ import static org.junit.Assert.assertTrue;
     @Then("the system should create a new raw material user account")
     public void the_system_should_create_a_new_raw_material_user_account() {
         if (msg.contains("valid username")) {
-            User u = new User(username, password, email, Type.rawmaterialsupplier);
+            User u = new User(username, password, email, Type.RAW_MATERIAL_SUPPLIER);
             app.addUser(u);
             assertTrue(app.isAdduser());
             app.signup(null);
