@@ -11,7 +11,7 @@ import myAPP2024.Type;
 import myAPP2024.myappsweet;
 
 public class Login_New_Steps {
-  private myappsweet app;
+    private myappsweet app;
     private String username;
     private String password;
     private String email;
@@ -58,7 +58,7 @@ public class Login_New_Steps {
         this.username = username;
         this.password = password;
         this.email = email;
-        setupUser(Type.admin, username, password, email);
+        setupUser(Type.ADMIN, username, password, email);
         assertTrue(true);
 
     }
@@ -68,7 +68,7 @@ public class Login_New_Steps {
         this.username = username;
         this.password = password;
         this.email = email;
-        setupUser(Type.storeowner, username, password, email);
+        setupUser(Type.STORE_OWNER, username, password, email);
         assertTrue(true);
 
     }
@@ -78,7 +78,7 @@ public class Login_New_Steps {
         this.username = username;
         this.password = password;
         this.email = email;
-        setupUser(Type.rawmaterialsupplier, username, password, email);
+        setupUser(Type.RAW_MATERIAL_SUPPLIER, username, password, email);
         assertTrue(true);
 
     }
@@ -88,21 +88,21 @@ public class Login_New_Steps {
         User user = app.getUser(username); 
         if (user != null && user.getPassword().equals(password) && user.getEmail().equals(email)) {
             switch (user.getKindofuser()) {
-                case beneficiaryUser:
+                case BENEFICIARY_USER:
                     msg = "Login successful. Welcome user !";
                     assertTrue(msg,user != null && user.getPassword().equals(password) && user.getEmail().equals(email));
                     break;
-                case admin:
+                case ADMIN:
                     msg = "Login successful. Welcome admin !";
                     assertTrue(msg,user != null && user.getPassword().equals(password) && user.getEmail().equals(email));
 
                     break;
-                case storeowner:
+                case STORE_OWNER:
                     msg = "Login successful. Welcome, owner !";
                     assertTrue(msg,user != null && user.getPassword().equals(password) && user.getEmail().equals(email));
 
                     break;
-                case rawmaterialsupplier:
+                case RAW_MATERIAL_SUPPLIER:
                     msg = "Login successful. Welcome, rawuser!";
                     assertTrue(msg,user != null && user.getPassword().equals(password) && user.getEmail().equals(email));
 
