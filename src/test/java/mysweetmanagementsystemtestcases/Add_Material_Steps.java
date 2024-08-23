@@ -145,7 +145,17 @@ public class Add_Material_Steps {
         assertEquals(m, msg2);
     }
 
-
+   public void the_material_details_should_be_verified() {
+    	if(found)
+    	{
+    		
+    		Material m2 = app.getMaterial(name);
+            assertEquals("Material ID should match", materialId, m2.getMaterialId());
+            assertEquals("Material name should match", name, m2.getName());
+            assertEquals("Material price should match", price, m2.getPrice(), 0.01);
+            assertEquals("Material quantity should match", quantityAvailable, m2.getQuantityavailable());
+    	}
+    }
 
 
 
